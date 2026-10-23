@@ -109,3 +109,30 @@ taskForm.addEventListener("submit", function (event) {
 const uncompletedTasks = document.getElementById("uncompletedTasks");
 
 displayUncompleted();
+
+
+
+// Editing a task
+
+/*
+PROBLEM DECOMPOSITION
+- A button beside the task, looking like a gear.
+- (Maybe combine later editing and deletion into one page.)
+- Display the content/name of the chosen task, e.g. as a text line.
+- User can write in that text line, i.e. edit (add/delete) characters.
+- When user clicks save, overwrite the content/name with the new input.
+*/
+
+/*
+- When the button is clicked, the editing mode is entered
+    - The "edit" button disappears
+    - A "save" and a "cancel" button appear
+        - Only when "save" is clicked, the changes are updated
+        - Refreshing the website preserves saved edits
+    - A field for input appears, containing the current task/description
+        - The changes are linked to the object property "task.text"
+            - The other properties should remain unchanged
+        - The changes are only applied to the selected task
+    - Can the user edit multiple tasks at once, or should we somehow discard edits when another task is clicked?
+*/
+
