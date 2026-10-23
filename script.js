@@ -57,7 +57,8 @@ function displayUncompleted() {
             displayUncompleted();
         });
 
-
+        const editDescription = document.createElement("input"); // <--
+        editDescription.value = element.text; // <--
         // Create an edit button
         const editButton = document.createElement("button");
         editButton.type = "button";
@@ -66,7 +67,7 @@ function displayUncompleted() {
             // Identify the task associated with the clicked button
             const toBeEdited = element.id;
             // Turn task description into an input field
-            const editDescription = document.createElement("input");
+            // ...
                 // How to connect with selected task?
             // The input field already contains the current task name/description
                 // append?
@@ -91,6 +92,9 @@ function displayUncompleted() {
             listItem.prepend(checkbox);
             listItem.appendChild(deleteButton);
             listItem.appendChild(editButton);
+
+            titleSpan.append(editDescription); // <--
+            //appears besides, eventually we want that it appears instead
         }
 
     }
