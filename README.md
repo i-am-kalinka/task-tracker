@@ -3,7 +3,7 @@
 - Here, I start learning more about HTML and CSS.
 
 ## Notes
-- DOM = Document Object Model
+- DOM = Document Object Model -> A tree of elements.
 - ol = ordered list, ul = unordered list, li = list item
 - ...
 - localStorage is used for persistent stage, can only store Strings
@@ -44,7 +44,7 @@
 
 
 # The roadmap I'd recommend for you
-1. Learn Git and GitHub
+1. Learn Git and GitHub [DONE]
    - Start here
    - Learn repositories, commits, branches, diffs, and pushing to GitHub. Use your existing Task Tracker as your first repository.
    - Goal: Experiment without keeping old code commented out or worrying about breaking your project.
@@ -64,3 +64,31 @@
 6. Explore backend development and databases
    - Start with Node.js, HTTP servers, REST APIs, and SQL. Later, connect your frontend to your own backend.
    - Goal: Build a full-stack application that persists data.
+
+
+
+Week 1 — Git + task editing
+[X] Initialize a Git repository and make meaningful commits
+[ ] Implement editing a task
+[ ] Test deletion, editing, and persistence edge cases
+
+
+Week 2 — CSS + usability
+[ ] Learn the box model and Flexbox
+[ ] Style your to-do app
+[ ] Add empty-input validation and useful feedback
+
+
+Week 3 — JavaScript fundamentals
+[ ] Practice array methods and closures
+[ ] Learn basic unit testing
+[ ] Refactor one piece of business logic into a testable function
+
+
+Week 4 — APIs + next project
+[ ] Learn promises, fetch, and async/await
+[ ] Request and display data from a public API
+[ ] Begin a second small project
+
+
+### Acceptance Criteria: Defining expected behavior (success) before implementation.
