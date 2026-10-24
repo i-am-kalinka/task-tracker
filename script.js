@@ -40,6 +40,7 @@ function displayUncompleted() {
         // Create a delete button for each task
         const deleteButton = document.createElement("button");
         deleteButton.type = "button";
+        deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", function() {
             tasks = tasks.filter(e => e.id !== element.id);
             saveTask(tasks);
@@ -57,44 +58,70 @@ function displayUncompleted() {
             displayUncompleted();
         });
 
-        const editDescription = document.createElement("input"); // <--
-        editDescription.value = element.text; // <--
-        // Create an edit button
+        // Re-assigning listItem.textContent directly replaces everything inside the <li> with the new text.
+        // The span lets us change the text without replacing everything else, e.g. buttons.
+        const titleSpan = document.createElement("span");
+        titleSpan.textContent = element.text;
+
+        // Create an input field containing the task description that is hidden at first
+        const editDescription = document.createElement("input");
+        editDescription.value = element.text;
+        editDescription.hidden = true;
+
+        // Create a "save" button
+        const saveButton = document.createElement("button");
+        saveButton.type = "button";
+        saveButton.textContent = "Save";
+        saveButton.hidden = true;
+
+        // Create a "cancel" button
+        const cancelButton = document.createElement("button");
+        cancelButton.type = "button";
+        cancelButton.textContent = "Cancel";
+        cancelButton.hidden = true;
+
+        // Create an "edit" button
         const editButton = document.createElement("button");
         editButton.type = "button";
+        editButton.textContent = "Edit";
         // Listen for a click on that button
         editButton.addEventListener("click", function () {
-            // Identify the task associated with the clicked button
+            // Identify the task associated with the clicked button <-- Why? Needed?
             const toBeEdited = element.id;
-            // Turn task description into an input field
-            // ...
-                // How to connect with selected task?
-            // The input field already contains the current task name/description
-                // append?
-            // Hide the "edit" and "delete" button
+        
+            // Hide original task description, edit button, delete button
+            titleSpan.hidden = true;
             editButton.hidden = true;
             deleteButton.hidden = true;
-            // Save (in local storage)
+
+            // Un-hide input field, save button, cancel button
+            editDescription.hidden = false;
+            saveButton.hidden = false;
+            cancelButton.hidden = false;
+
+            // Save (in local storage) ?
         });
 
+        saveButton.addEventListener("click", function () {
+            // tasks.text = editDescription.value;
+            // console.log(tasks, tasks.text);
+        });
 
         // Checking for completion
         if (element.completed === false) {
-            
-            // Re-assigning listItem.textContent directly replaces everything inside the <li> with the new text.
-            // The span lets us change the text without replacing everything else, e.g. buttons.
-            let titleSpan = document.createElement("span");
-            titleSpan.textContent = element.text;
-            listItem.append(titleSpan);
 
             // Each newly created listItem becomes a child of the <ul>
             uncompletedTasks.appendChild(listItem);
+
+            listItem.append(titleSpan); // <--
+
             listItem.prepend(checkbox);
             listItem.appendChild(deleteButton);
             listItem.appendChild(editButton);
 
-            titleSpan.append(editDescription); // <--
-            //appears besides, eventually we want that it appears instead
+            listItem.append(editDescription); // <--
+            listItem.append(saveButton); // <--
+            listItem.append(cancelButton); // <--
         }
 
     }
@@ -146,17 +173,8 @@ displayUncompleted();
 
 
 
-// Editing a task
 
-/*
-PROBLEM DECOMPOSITION
-- A button beside the task, looking like a gear.
-- (Maybe combine later editing and deletion into one page.)
-- Display the content/name of the chosen task, e.g. as a text line.
-- User can write in that text line, i.e. edit (add/delete) characters.
-- When user clicks save, overwrite the content/name with the new input.
-*/
-
+// When user clicks save, overwrite the content/name with the new input.
 /*
 - When the button is clicked, the editing mode is entered
     - The "edit" button disappears
@@ -168,4 +186,12 @@ PROBLEM DECOMPOSITION
             - The other properties should remain unchanged
         - The changes are only applied to the selected task
     - Can the user edit multiple tasks at once, or should we somehow discard edits when another task is clicked?
+
+Save behavior — your implementation plan
+1. Detect that the user clicked Save.
+2. Read the new description from the input.
+3. Update the selected task object's description.
+4. Persist the modified tasks.
+5. Return the interface to its normal display mode.
+
 */

@@ -92,3 +92,8 @@ Week 4 — APIs + next project
 
 
 ### Acceptance Criteria: Defining expected behavior (success) before implementation.
+
+
+# Notes
+- Unlike a <span> or <li>, an <input> is a void element. A void element cannot have child elements in HTML.
+- ...
