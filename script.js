@@ -73,12 +73,37 @@ function displayUncompleted() {
         saveButton.type = "button";
         saveButton.textContent = "Save";
         saveButton.hidden = true;
+        saveButton.addEventListener("click", function () {
+            // Update the description
+            element.text = editDescription.value;
+            titleSpan.textContent = editDescription.value;
+            // Change the UI back to reading mode
+            titleSpan.hidden = false;
+            editButton.hidden = false;
+            deleteButton.hidden = false;
+            editDescription.hidden = true;
+            saveButton.hidden = true;
+            cancelButton.hidden = true;
+            // Save in localStorage
+            saveTask(tasks);
+        });
 
         // Create a "cancel" button
         const cancelButton = document.createElement("button");
         cancelButton.type = "button";
         cancelButton.textContent = "Cancel";
         cancelButton.hidden = true;
+        cancelButton.addEventListener("click", function () {
+            // Discard the new entry
+            editDescription.value = titleSpan.textContent;
+            // Change the UI back to reading mode
+            titleSpan.hidden = false;
+            editButton.hidden = false;
+            deleteButton.hidden = false;
+            editDescription.hidden = true;
+            saveButton.hidden = true;
+            cancelButton.hidden = true;
+        });
 
         // Create an "edit" button
         const editButton = document.createElement("button");
@@ -86,44 +111,31 @@ function displayUncompleted() {
         editButton.textContent = "Edit";
         // Listen for a click on that button
         editButton.addEventListener("click", function () {
-            // Identify the task associated with the clicked button <-- Why? Needed?
-            const toBeEdited = element.id;
-        
             // Hide original task description, edit button, delete button
             titleSpan.hidden = true;
             editButton.hidden = true;
             deleteButton.hidden = true;
-
             // Un-hide input field, save button, cancel button
             editDescription.hidden = false;
             saveButton.hidden = false;
             cancelButton.hidden = false;
-
-            // Save (in local storage) ?
         });
 
-        saveButton.addEventListener("click", function () {
-            // tasks.text = editDescription.value;
-            // console.log(tasks, tasks.text);
-        });
-
-        // Checking for completion
+        // Check for completion
         if (element.completed === false) {
-
             // Each newly created listItem becomes a child of the <ul>
             uncompletedTasks.appendChild(listItem);
-
-            listItem.append(titleSpan); // <--
-
+            // Build the content of the <li> element
             listItem.prepend(checkbox);
+            // .append accepts Node objects and DOMStrings
+            listItem.append(titleSpan);
+            listItem.append(editDescription);
+            // .appendChild accepts only Node objects
             listItem.appendChild(deleteButton);
             listItem.appendChild(editButton);
-
-            listItem.append(editDescription); // <--
-            listItem.append(saveButton); // <--
-            listItem.append(cancelButton); // <--
+            listItem.appendChild(saveButton);
+            listItem.appendChild(cancelButton);
         }
-
     }
 }
 
