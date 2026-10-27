@@ -4,7 +4,7 @@ import { saveTask } from "../functions.js";
 const savedTasks = localStorage.getItem("tasks");
 
 // Convert the string back to an array
-const tasks = JSON.parse(savedTasks);
+let tasks = JSON.parse(savedTasks);
 
 // Store a reference to the HTML element with id="completedTasks"
 const completedTasks = document.getElementById("completedTasks");
@@ -18,7 +18,9 @@ function displayCompleted() {
         deleteButton.type = "button";
         deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", function() {
-            tasks = tasks.filter(e => e.id ==! element.id);
+            tasks = tasks.filter(e => e.id !== element.id);
+            saveTask(tasks);
+            displayCompleted();
         });
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
@@ -42,12 +44,15 @@ function displayCompleted() {
         saveButton.addEventListener("click", function () {
             element.text = editDescription.value;
             titleSpan.textContent = editDescription.value;
-            titleSpan.hidden = false;
-            editButton.hidden = false;
-            deleteButton.hidden = false;
-            editDescription.hidden = true;
-            saveButton.hidden = true;
-            cancelButton.hidden = true;
+            function exitEditMode() {
+                titleSpan.hidden = false;
+                editButton.hidden = false;
+                deleteButton.hidden = false;
+                editDescription.hidden = true;
+                saveButton.hidden = true;
+                cancelButton.hidden = true;
+            }
+            exitEditMode();
             saveTask(tasks);
         });
         const cancelButton = document.createElement("button");
@@ -56,12 +61,7 @@ function displayCompleted() {
         cancelButton.hidden = true;
         cancelButton.addEventListener("click", function () {
             editDescription.value = titleSpan.textContent;
-            titleSpan.hidden = false;
-            editButton.hidden = false;
-            deleteButton.hidden = false;
-            editDescription.hidden = true;
-            saveButton.hidden = true;
-            cancelButton.hidden = true;
+            exitEditMode();
         });
         const editButton = document.createElement("button");
         editButton.type = "button";

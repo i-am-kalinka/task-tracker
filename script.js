@@ -49,6 +49,8 @@ function displayUncompleted() {
         // Create a checkbox for each task
         const checkbox = document.createElement("input");
         checkbox.type = "checkbox";
+        // Make the checkbox match the (value of) data
+        checkbox.checked = element.completed;
         // Change the boolean state
         checkbox.addEventListener("change", function () {
             // Take the checkbox's current state and assign it to the task object's completed property
@@ -68,6 +70,15 @@ function displayUncompleted() {
         editDescription.value = element.text;
         editDescription.hidden = true;
 
+        function exitEditMode() {
+                titleSpan.hidden = false;
+                editButton.hidden = false;
+                deleteButton.hidden = false;
+                editDescription.hidden = true;
+                saveButton.hidden = true;
+                cancelButton.hidden = true;
+            }
+
         // Create a "save" button
         const saveButton = document.createElement("button");
         saveButton.type = "button";
@@ -77,14 +88,7 @@ function displayUncompleted() {
             // Update the description
             element.text = editDescription.value;
             titleSpan.textContent = editDescription.value;
-            // Change the UI back to reading mode
-            titleSpan.hidden = false;
-            editButton.hidden = false;
-            deleteButton.hidden = false;
-            editDescription.hidden = true;
-            saveButton.hidden = true;
-            cancelButton.hidden = true;
-            // Save in localStorage
+            exitEditMode();
             saveTask(tasks);
         });
 
@@ -97,12 +101,7 @@ function displayUncompleted() {
             // Discard the new entry
             editDescription.value = titleSpan.textContent;
             // Change the UI back to reading mode
-            titleSpan.hidden = false;
-            editButton.hidden = false;
-            deleteButton.hidden = false;
-            editDescription.hidden = true;
-            saveButton.hidden = true;
-            cancelButton.hidden = true;
+            exitEditMode();
         });
 
         // Create an "edit" button
@@ -184,26 +183,48 @@ displayUncompleted();
 
 
 
+// 1. Work through the ChatGPT itinerary
+// 2. After clean up, merge my branch and update Github
+// 3. CSS
+// 4. Automated tests?
 
 
-// When user clicks save, overwrite the content/name with the new input.
-/*
-- When the button is clicked, the editing mode is entered
-    - The "edit" button disappears
-    - A "save" and a "cancel" button appear
-        - Only when "save" is clicked, the changes are updated
-        - Refreshing the website preserves saved edits
-    - A field for input appears, containing the current task/description
-        - The changes are linked to the object property "task.text"
-            - The other properties should remain unchanged
-        - The changes are only applied to the selected task
-    - Can the user edit multiple tasks at once, or should we somehow discard edits when another task is clicked?
+// 1.1) 
+// I created a "exitEditMode()" function in the "script.js" file.
+// This way, I'm able to have this code only once, while calling the function twice.
+// Is this enough? I tried to make this function in the "functions.js" file to not repeat
+// it across files, but it didn't know things defined elsewhere such as "title.span".
 
-Save behavior — your implementation plan
-1. Detect that the user clicked Save.
-2. Read the new description from the input.
-3. Update the selected task object's description.
-4. Persist the modified tasks.
-5. Return the interface to its normal display mode.
+// 1.2)
+// I just forgot one line, right?
+// I think I fixed it now, please check.
 
-*/
+// 1.3)
+// Is it really a problem though if an old ID is reused?
+// If the task was deleted, it's ID should free up - I don't see an issue.
+
+// 2)
+// a: Works.
+// b: Works.
+// c: Works.
+// d: Works.
+// e: Works.
+// f: Works.
+// g: Works.
+// h: Works.
+// i: Works.
+// j: Works.
+// k: Works.
+// l: Works.
+    // Notes:
+    // I can add a task without a description.
+    // I can edit multiple tasks at the same time.
+    // I can save a task after removing description.
+        // Many spaces are still saved as if nothing is there.
+
+// 3)
+// ...
+// "   Study JavaScript   ".trim()
+
+// 4)
+// ...

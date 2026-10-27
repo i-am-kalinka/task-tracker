@@ -69,7 +69,7 @@
 
 Week 1 — Git + task editing
 [X] Initialize a Git repository and make meaningful commits
-[ ] Implement editing a task
+[X] Implement editing a task
 [ ] Test deletion, editing, and persistence edge cases
 
 
