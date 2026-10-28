@@ -70,7 +70,7 @@
 Week 1 — Git + task editing
 [X] Initialize a Git repository and make meaningful commits
 [X] Implement editing a task
-[ ] Test deletion, editing, and persistence edge cases
+[X] Test deletion, editing, and persistence edge cases
 
 
 Week 2 — CSS + usability

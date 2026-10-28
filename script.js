@@ -134,8 +134,16 @@ function displayUncompleted() {
             listItem.appendChild(editButton);
             listItem.appendChild(saveButton);
             listItem.appendChild(cancelButton);
+            // listItem.append(emptyStateMessage);
         }
     }
+    const emptyStateMessage = document.getElementById("emptyStateMessage");
+    if (tasks.filter(e => e.completed === false).length === 0) {
+        emptyStateMessage.hidden = false;
+    } else {
+        emptyStateMessage.hidden = true;
+    }
+    // .some() => Does at least one element satisfy this condition?
 }
 
 
@@ -175,7 +183,6 @@ taskForm.addEventListener("submit", function (event) {
     // Small check
     console.log(tasks);
 });
-
 
 const uncompletedTasks = document.getElementById("uncompletedTasks");
 
@@ -223,8 +230,13 @@ displayUncompleted();
         // Many spaces are still saved as if nothing is there.
 
 // 3)
-// ...
-// "   Study JavaScript   ".trim()
+// How do I do this? How do I check for a certain type?
+// My first idea would be an if-statement that checks for "type === String".
 
 // 4)
-// ...
+// At first, the functionality worked after reloading the page, but something like a click didn't
+// change the UI. Therefore, I put this piece of code into the displayUncomplete() function. Now,
+// when the last task is deleted, the message shows up BUT after adding a new tasks it doesn't go
+// aways. I'm not sure how to fix this.
+// Also, I'm not sure if this is the best way to do it, i.e. with ".filter". I tried a for-loop
+// and a while-loop too but they led to infinite loading and I didn't know how to fix that.
