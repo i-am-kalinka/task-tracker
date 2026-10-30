@@ -1,7 +1,7 @@
 // Look for that function in the same folder as this file
 import { saveTask } from "./functions.js";
 
-// Use an array to store tasks because we have a collection of the same type of thing
+// An array for task storage since we have a collection of the same type of thing
 const exampleTasks = [
     {
         id: 0,
@@ -28,7 +28,11 @@ if (savedTasks !== null) {
     tasks = exampleTasks;
 }
 
+// For the case that an invalid input is entered
+const emptyTaskMessage = document.getElementById("emptyTaskMessage");
+emptyTaskMessage.hidden = true;
 
+const uncompletedTasks = document.getElementById("uncompletedTasks");
 // Display all uncompleted tasks on the main page
 // It's supposed to be called whenever a new task is added = "rendering"
 function displayUncompleted() {
@@ -85,11 +89,18 @@ function displayUncompleted() {
         saveButton.textContent = "Save";
         saveButton.hidden = true;
         saveButton.addEventListener("click", function () {
-            // Update the description
-            element.text = editDescription.value;
-            titleSpan.textContent = editDescription.value;
-            exitEditMode();
-            saveTask(tasks);
+            // Input validation
+            const trimmedTask = editDescription.value.trim();
+            if (trimmedTask.length === 0) {
+                emptyTaskMessage.hidden = false;
+            } else {
+                emptyTaskMessage.hidden = true;
+                // Update the description
+                element.text = editDescription.value;
+                titleSpan.textContent = editDescription.value;
+                exitEditMode();
+                saveTask(tasks);
+            }
         });
 
         // Create a "cancel" button
@@ -146,7 +157,6 @@ function displayUncompleted() {
     // .some() => Does at least one element satisfy this condition?
 }
 
-
 // When the add button is clicked, the text from the input field is added as a new task
 const taskForm = document.getElementById("taskForm");
 const taskInput = document.getElementById("taskInput");
@@ -155,88 +165,49 @@ let idCounter;
 taskForm.addEventListener("submit", function (event) {
     // Changing the normal form submission behavior to prevent page reloading
     event.preventDefault();
-    // Assign a new unique id to the new task
-    const ids = tasks.map(function(todo) {
-        return todo.id;
-    })
-    // Turn the array into a list with the spread operator, and get the largest id
-    idCounter = Math.max(...ids);
-
-    // Handle edge cases, such as if the array is empty
-    if (ids.length === 0) {
-        idCounter = 0;
+    // Input validation
+    // 1. Remove unncessary spaces
+    const trimmedTask = taskInput.value.trim();
+    // 2. Prevent blank descriptions
+    if (trimmedTask.length === 0) {
+        emptyTaskMessage.hidden = false;
     } else {
-        idCounter +=1;
-    }
-
-    tasks.push(
-        {
-            id: idCounter,
-            text: taskInput.value,
-            completed: false
+        emptyTaskMessage.hidden = true;
+        // Assign a new unique id to the new task
+        const ids = tasks.map(function(todo) {
+        return todo.id;
+        })
+        // Turn the array into a list with the spread operator, and get the largest id
+        idCounter = Math.max(...ids);
+        // Handle edge cases, such as if the array is empty
+        if (ids.length === 0) {
+            idCounter = 0;
+        } else {
+            idCounter +=1;
         }
-    );
-    // Saving to local storage as text
-    saveTask(tasks);
-    displayUncompleted();
+        // Add new task to the array
+        tasks.push(
+            {
+            id: idCounter,
+            text: trimmedTask,
+            completed: false
+            }
+        );
+        // Saving to local storage as text
+        saveTask(tasks);
+        displayUncompleted();
 
-    // Small check
-    console.log(tasks);
+        // Small check
+        console.log(tasks);
+    }
 });
-
-const uncompletedTasks = document.getElementById("uncompletedTasks");
 
 displayUncompleted();
 
 
-
-// 1. Work through the ChatGPT itinerary
-// 2. After clean up, merge my branch and update Github
-// 3. CSS
-// 4. Automated tests?
-
-
-// 1.1) 
-// I created a "exitEditMode()" function in the "script.js" file.
-// This way, I'm able to have this code only once, while calling the function twice.
-// Is this enough? I tried to make this function in the "functions.js" file to not repeat
-// it across files, but it didn't know things defined elsewhere such as "title.span".
-
-// 1.2)
-// I just forgot one line, right?
-// I think I fixed it now, please check.
-
-// 1.3)
-// Is it really a problem though if an old ID is reused?
-// If the task was deleted, it's ID should free up - I don't see an issue.
-
-// 2)
-// a: Works.
-// b: Works.
-// c: Works.
-// d: Works.
-// e: Works.
-// f: Works.
-// g: Works.
-// h: Works.
-// i: Works.
-// j: Works.
-// k: Works.
-// l: Works.
-    // Notes:
-    // I can add a task without a description.
-    // I can edit multiple tasks at the same time.
-    // I can save a task after removing description.
-        // Many spaces are still saved as if nothing is there.
-
-// 3)
-// How do I do this? How do I check for a certain type?
-// My first idea would be an if-statement that checks for "type === String".
-
-// 4)
-// At first, the functionality worked after reloading the page, but something like a click didn't
-// change the UI. Therefore, I put this piece of code into the displayUncomplete() function. Now,
-// when the last task is deleted, the message shows up BUT after adding a new tasks it doesn't go
-// aways. I'm not sure how to fix this.
-// Also, I'm not sure if this is the best way to do it, i.e. with ".filter". I tried a for-loop
-// and a while-loop too but they led to infinite loading and I didn't know how to fix that.
+/*
+1. Add click-able link to completed.js for returning to main page
+2. After clean up, merge my branch and update Github
+3. Learn some CSS
+4. Automated tests?
+*/ 

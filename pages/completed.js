@@ -9,6 +9,10 @@ let tasks = JSON.parse(savedTasks);
 // Store a reference to the HTML element with id="completedTasks"
 const completedTasks = document.getElementById("completedTasks");
 
+// For the case that an invalid input is entered
+const emptyTaskMessage = document.getElementById("emptyTaskMessage");
+emptyTaskMessage.hidden = true;
+
 // Re-usable function to show currently completed tasks
 function displayCompleted() {
     completedTasks.textContent = "";
@@ -42,8 +46,7 @@ function displayCompleted() {
         saveButton.textContent = "Save";
         saveButton.hidden = true;
         saveButton.addEventListener("click", function () {
-            element.text = editDescription.value;
-            titleSpan.textContent = editDescription.value;
+            // Used for "save" and "exit" buttons
             function exitEditMode() {
                 titleSpan.hidden = false;
                 editButton.hidden = false;
@@ -52,8 +55,17 @@ function displayCompleted() {
                 saveButton.hidden = true;
                 cancelButton.hidden = true;
             }
-            exitEditMode();
-            saveTask(tasks);
+            // Input validation
+            const trimmedTask = editDescription.value.trim();
+            if (trimmedTask.length === 0) {
+                emptyTaskMessage.hidden = false;
+            } else {
+                emptyTaskMessage.hidden = true;
+                element.text = editDescription.value;
+                titleSpan.textContent = editDescription.value;
+                exitEditMode();
+                saveTask(tasks);
+            }
         });
         const cancelButton = document.createElement("button");
         cancelButton.type = "button";
