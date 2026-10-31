@@ -69,8 +69,8 @@
 
 Week 1 — Git + task editing
 [X] Initialize a Git repository and make meaningful commits
-[ ] Implement editing a task
-[ ] Test deletion, editing, and persistence edge cases
+[X] Implement editing a task
+[X] Test deletion, editing, and persistence edge cases
 
 
 Week 2 — CSS + usability
@@ -92,3 +92,9 @@ Week 4 — APIs + next project
 
 
 ### Acceptance Criteria: Defining expected behavior (success) before implementation.
+
+
+# Notes
+- Unlike a <span> or <li>, an <input> is a void element. A void element cannot have child elements in HTML.
+- ...
+
