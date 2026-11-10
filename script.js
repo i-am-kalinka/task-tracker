@@ -5,12 +5,12 @@ import { saveTask } from "./functions.js";
 const exampleTasks = [
     {
         id: 0,
-        text: "One Example To-Do",
+        text: "Completed To-Do Example",
         completed: true
     },
     {
         id: 1,
-        text: "Another Example To-Do",
+        text: "Uncompleted To-Do Example",
         completed: false
     }
 ];
@@ -100,8 +100,9 @@ function displayUncompleted() {
             } else {
                 emptyTaskMessage.hidden = true;
                 // Update the description
-                element.text = editDescription.value;
-                titleSpan.textContent = editDescription.value;
+                element.text = trimmedTask;
+                titleSpan.textContent = element.text;
+                editDescription.value = element.text;
                 exitEditMode();
                 saveTask(tasks);
             }
@@ -156,15 +157,10 @@ function displayUncompleted() {
     const emptyStateMessage = document.getElementById("emptyStateMessage");
     if (tasks.filter(e => e.completed === false).length === 0) {
         emptyStateMessage.hidden = false;
-        // 1. Find an element to match that CSS selector
-        // 2. Add this class name to that element
-        document.querySelector(".container-tasks").classList.add("hidden");
     } else {
         emptyStateMessage.hidden = true;
-        document.querySelector(".container-tasks").classList.remove("hidden");
     }
     // .some() => Does at least one element satisfy this condition?
-    // .toggle() instead of .add() and .remove() also works
 }
 
 // When the add button is clicked, the text from the input field is added as a new task

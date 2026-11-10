@@ -11,7 +11,7 @@
     border-radius: 5px;
 }
 button:hover{
-    background-color: green;
+    background-color: grey;
 }
 
 body {
@@ -41,6 +41,13 @@ body {
 }
 
 .container-tasks {
+    padding-right: 100px;
+    padding-left: 100px;
+    background-color:#e9edc9;
+    border-radius: 10px;
+    width: 60%;
+}
+.empty {
     padding-right: 100px;
     padding-left: 100px;
     background-color:#e9edc9;
@@ -116,10 +123,6 @@ a:active {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color:beige;
-    border-radius: 5px;
-    padding-left: 20px;
-    padding-right: 20px;
 }
 #emptyStateMessage p {
     font-family:'Franklin Gothic Medium', sans-serif;
@@ -129,17 +132,14 @@ a:active {
     text-decoration: underline;
 }
 /* Select the element with ID emptyTaskMessage, 
-but only when it has the HTML attribute hidden.*/
+but only when it has the HTML attribute "hidden". */
 #emptyStateMessage[hidden] {
     display: none;
 }
-.hidden {
-    display: none;
-}
-
 
 /*
-To-Do:
-- Currently, the Header is removed completely when the noTasksMessage shows,
-- but maybe I want to keep the link back or sth.
+JS:
+1. Find an element to match that CSS selector
+2. Add this class name to that element
+    document.querySelector(".container-tasks").classList.toggle("hidden");
 */

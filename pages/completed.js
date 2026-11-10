@@ -1,7 +1,14 @@
 import { saveTask } from "../functions.js";
 
-// Retrieve the tasks from local storage
-const savedTasks = localStorage.getItem("tasks");
+let savedTasks;
+
+if (savedTasks === null) {
+    // Assign an empty array if there are no tasks
+    savedTasks = [];
+} else {
+    // Retrieve the tasks from local storage
+    savedTasks = localStorage.getItem("tasks");
+}
 
 // Convert the string back to an array
 let tasks = JSON.parse(savedTasks);
@@ -45,20 +52,19 @@ function displayCompleted() {
         const editDescription = document.createElement("input");
         editDescription.value = element.text;
         editDescription.hidden = true;
+        function exitEditMode() {
+            titleSpan.hidden = false;
+            editButton.hidden = false;
+            deleteButton.hidden = false;
+            editDescription.hidden = true;
+            saveButton.hidden = true;
+            cancelButton.hidden = true;
+        }
         const saveButton = document.createElement("button");
         saveButton.type = "button";
         saveButton.textContent = "Save";
         saveButton.hidden = true;
         saveButton.addEventListener("click", function () {
-            // Used for "save" and "exit" buttons
-            function exitEditMode() {
-                titleSpan.hidden = false;
-                editButton.hidden = false;
-                deleteButton.hidden = false;
-                editDescription.hidden = true;
-                saveButton.hidden = true;
-                cancelButton.hidden = true;
-            }
             // Input validation
             const trimmedTask = editDescription.value.trim();
             if (trimmedTask.length === 0) {

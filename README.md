@@ -48,7 +48,7 @@
    - Start here
    - Learn repositories, commits, branches, diffs, and pushing to GitHub. Use your existing Task Tracker as your first repository.
    - Goal: Experiment without keeping old code commented out or worrying about breaking your project.
-2. Finish and polish your to-do app
+2. Finish and polish your to-do app [DONE]
    - Add editing, input validation, an empty-state message, and some CSS. Keep using vanilla JavaScript.
    - Goal: Complete a small application end-to-end, including edge cases and usability.
 3. Learn more JavaScript and basic testing
@@ -74,8 +74,8 @@ Week 1 — Git + task editing
 
 
 Week 2 — CSS + usability
-[ ] Learn the box model and Flexbox
-[ ] Style your to-do app
+[X] Learn the box model and Flexbox
+[X] Style your to-do app
 [X] Add empty-input validation and useful feedback
 
 
@@ -98,3 +98,17 @@ Week 4 — APIs + next project
 - Unlike a <span> or <li>, an <input> is a void element. A void element cannot have child elements in HTML.
 - ...
 
+
+
+
+Next:
+3.
+A) Refactoring duplicated code
+B) Learning automated testing
+C) Responsive design and accessibility 
+4.
+- Some "minor" issues
+- Update Readme, make project presentable for GitHub
+5.
+- API, HTTP, fetch(), Promise, async/await
+- new project
