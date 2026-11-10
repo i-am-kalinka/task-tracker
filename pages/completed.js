@@ -18,7 +18,9 @@ function displayCompleted() {
     completedTasks.textContent = "";
     for (let element of tasks) {
         const listItem = document.createElement("li");
+        listItem.classList.add("listItem");
         const deleteButton = document.createElement("button");
+        deleteButton.classList.add("button", "button-delete");
         deleteButton.type = "button";
         deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", function() {
@@ -27,6 +29,7 @@ function displayCompleted() {
             displayCompleted();
         });
         const checkbox = document.createElement("input");
+        checkbox.classList.add("checkbox");
         checkbox.type = "checkbox";
         // Make the checkbox match the (value of) data
         checkbox.checked = element.completed;
@@ -37,6 +40,7 @@ function displayCompleted() {
             displayCompleted();
         });
         const titleSpan = document.createElement("span");
+        titleSpan.classList.add("titleSpan");
         titleSpan.textContent = element.text;
         const editDescription = document.createElement("input");
         editDescription.value = element.text;
@@ -76,6 +80,7 @@ function displayCompleted() {
             exitEditMode();
         });
         const editButton = document.createElement("button");
+        editButton.classList.add("button", "button-edit");
         editButton.type = "button";
         editButton.textContent = "Edit";
         editButton.addEventListener("click", function () {

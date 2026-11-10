@@ -76,7 +76,7 @@ Week 1 — Git + task editing
 Week 2 — CSS + usability
 [ ] Learn the box model and Flexbox
 [ ] Style your to-do app
-[ ] Add empty-input validation and useful feedback
+[X] Add empty-input validation and useful feedback
 
 
 Week 3 — JavaScript fundamentals

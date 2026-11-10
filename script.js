@@ -41,8 +41,10 @@ function displayUncompleted() {
     for (let element of tasks) {
         // Create a list item for each task
         const listItem = document.createElement("li");
+        listItem.classList.add("listItem");
         // Create a delete button for each task
         const deleteButton = document.createElement("button");
+        deleteButton.classList.add("button", "button-delete");
         deleteButton.type = "button";
         deleteButton.textContent = "Delete";
         deleteButton.addEventListener("click", function() {
@@ -52,6 +54,7 @@ function displayUncompleted() {
         });
         // Create a checkbox for each task
         const checkbox = document.createElement("input");
+        checkbox.classList.add("checkbox");
         checkbox.type = "checkbox";
         // Make the checkbox match the (value of) data
         checkbox.checked = element.completed;
@@ -67,6 +70,7 @@ function displayUncompleted() {
         // Re-assigning listItem.textContent directly replaces everything inside the <li> with the new text.
         // The span lets us change the text without replacing everything else, e.g. buttons.
         const titleSpan = document.createElement("span");
+        titleSpan.classList.add("titleSpan");
         titleSpan.textContent = element.text;
 
         // Create an input field containing the task description that is hidden at first
@@ -117,6 +121,7 @@ function displayUncompleted() {
 
         // Create an "edit" button
         const editButton = document.createElement("button");
+        editButton.classList.add("button", "button-edit");
         editButton.type = "button";
         editButton.textContent = "Edit";
         // Listen for a click on that button
@@ -141,25 +146,31 @@ function displayUncompleted() {
             listItem.append(titleSpan);
             listItem.append(editDescription);
             // .appendChild accepts only Node objects
-            listItem.appendChild(deleteButton);
             listItem.appendChild(editButton);
             listItem.appendChild(saveButton);
             listItem.appendChild(cancelButton);
+            listItem.appendChild(deleteButton);
             // listItem.append(emptyStateMessage);
         }
     }
     const emptyStateMessage = document.getElementById("emptyStateMessage");
     if (tasks.filter(e => e.completed === false).length === 0) {
         emptyStateMessage.hidden = false;
+        // 1. Find an element to match that CSS selector
+        // 2. Add this class name to that element
+        document.querySelector(".container-tasks").classList.add("hidden");
     } else {
         emptyStateMessage.hidden = true;
+        document.querySelector(".container-tasks").classList.remove("hidden");
     }
     // .some() => Does at least one element satisfy this condition?
+    // .toggle() instead of .add() and .remove() also works
 }
 
 // When the add button is clicked, the text from the input field is added as a new task
 const taskForm = document.getElementById("taskForm");
 const taskInput = document.getElementById("taskInput");
+taskInput.classList.add("container1");
 let idCounter;
 // Submit also works when the user presses Enter
 taskForm.addEventListener("submit", function (event) {
