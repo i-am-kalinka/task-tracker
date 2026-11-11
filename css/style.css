@@ -30,7 +30,7 @@ body {
     column-gap: 10px;
 }
 #taskForm label {
-    /* background-color: blueviolet; */
+    /* outline: 2px blueviolet solid; */
 }
 #taskInput {
     font-size: 20px;
