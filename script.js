@@ -1,6 +1,14 @@
 // Look for that function in the same folder as this file
 import { saveTask } from "./functions.js";
 
+import { createDeleteButton } from "./functions.js";
+import { createEditDescription } from "./functions.js";
+import { createCheckbox } from "./functions.js";
+import { createSaveButton } from "./functions.js";
+import { createCancelButton } from "./functions.js";
+import { createEditButton } from "./functions.js";
+
+
 // An array for task storage since we have a collection of the same type of thing
 const exampleTasks = [
     {
@@ -43,19 +51,14 @@ function displayUncompleted() {
         const listItem = document.createElement("li");
         listItem.classList.add("listItem");
         // Create a delete button for each task
-        const deleteButton = document.createElement("button");
-        deleteButton.classList.add("button", "button-delete");
-        deleteButton.type = "button";
-        deleteButton.textContent = "Delete";
+        const deleteButton = createDeleteButton();
         deleteButton.addEventListener("click", function() {
             tasks = tasks.filter(e => e.id !== element.id);
             saveTask(tasks);
             displayUncompleted();
         });
         // Create a checkbox for each task
-        const checkbox = document.createElement("input");
-        checkbox.classList.add("checkbox");
-        checkbox.type = "checkbox";
+        const checkbox = createCheckbox();
         // Make the checkbox match the (value of) data
         checkbox.checked = element.completed;
         // Change the boolean state
@@ -74,9 +77,8 @@ function displayUncompleted() {
         titleSpan.textContent = element.text;
 
         // Create an input field containing the task description that is hidden at first
-        const editDescription = document.createElement("input");
+        const editDescription = createEditDescription();
         editDescription.value = element.text;
-        editDescription.hidden = true;
 
         function exitEditMode() {
                 titleSpan.hidden = false;
@@ -88,10 +90,7 @@ function displayUncompleted() {
             }
 
         // Create a "save" button
-        const saveButton = document.createElement("button");
-        saveButton.type = "button";
-        saveButton.textContent = "Save";
-        saveButton.hidden = true;
+        const saveButton = createSaveButton();
         saveButton.addEventListener("click", function () {
             // Input validation
             const trimmedTask = editDescription.value.trim();
@@ -109,10 +108,7 @@ function displayUncompleted() {
         });
 
         // Create a "cancel" button
-        const cancelButton = document.createElement("button");
-        cancelButton.type = "button";
-        cancelButton.textContent = "Cancel";
-        cancelButton.hidden = true;
+        const cancelButton = createCancelButton();
         cancelButton.addEventListener("click", function () {
             // Discard the new entry
             editDescription.value = titleSpan.textContent;
@@ -121,10 +117,7 @@ function displayUncompleted() {
         });
 
         // Create an "edit" button
-        const editButton = document.createElement("button");
-        editButton.classList.add("button", "button-edit");
-        editButton.type = "button";
-        editButton.textContent = "Edit";
+        const editButton = createEditButton();
         // Listen for a click on that button
         editButton.addEventListener("click", function () {
             // Hide original task description, edit button, delete button
@@ -243,3 +236,10 @@ PROBLEM DECOMPOSITION
 4. Automated tests?
 */ 
 
+// // Dynamically add an HTML structure for the "edit" interface
+// const containerEditMode = document.createElement("div");
+// containerEditMode.classList.add("edit-mode");
+// // Group the elements inside the container
+// containerEditMode.append(editDescription, saveButton, cancelButton);
+// // Add the container to the page
+// document.querySelector(".container-tasks").append(containerEditMode);

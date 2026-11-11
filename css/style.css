@@ -29,9 +29,6 @@ body {
     padding: 30px;
     column-gap: 10px;
 }
-#taskForm label {
-    /* outline: 2px blueviolet solid; */
-}
 #taskInput {
     font-size: 20px;
     font-family: Impact;
@@ -104,11 +101,27 @@ a:active {
     border-radius: 5px;
     padding: 5px;
 }
+.editDescription {
+    font-size: 20px;
+    flex-grow: 1;
+    border-radius: 5px;
+    padding: 5px;
+}
 .button-edit {
     background-color:#faedcd;
+    min-width: 70px;
 }
 .button-delete {
     background-color:#d4a373;
+    min-width: 70px;
+}
+.button-save {
+    background-color: #faedcd;
+    min-width: 70px;
+}
+.button-cancel {
+    background-color: #d4a373;
+    min-width: 70px;
 }
 
 /*

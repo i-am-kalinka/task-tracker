@@ -1,5 +1,12 @@
 import { saveTask } from "../functions.js";
 
+import { createDeleteButton } from "../functions.js";
+import { createEditDescription } from "../functions.js";
+import { createCheckbox } from "../functions.js";
+import { createSaveButton } from "../functions.js";
+import { createCancelButton } from "../functions.js";
+import { createEditButton } from "../functions.js";
+
 let savedTasks;
 
 if (savedTasks === null) {
@@ -26,18 +33,13 @@ function displayCompleted() {
     for (let element of tasks) {
         const listItem = document.createElement("li");
         listItem.classList.add("listItem");
-        const deleteButton = document.createElement("button");
-        deleteButton.classList.add("button", "button-delete");
-        deleteButton.type = "button";
-        deleteButton.textContent = "Delete";
+        const deleteButton = createDeleteButton();
         deleteButton.addEventListener("click", function() {
             tasks = tasks.filter(e => e.id !== element.id);
             saveTask(tasks);
             displayCompleted();
         });
-        const checkbox = document.createElement("input");
-        checkbox.classList.add("checkbox");
-        checkbox.type = "checkbox";
+        const checkbox = createCheckbox();
         // Make the checkbox match the (value of) data
         checkbox.checked = element.completed;
         checkbox.addEventListener("change", function () {
@@ -49,9 +51,8 @@ function displayCompleted() {
         const titleSpan = document.createElement("span");
         titleSpan.classList.add("titleSpan");
         titleSpan.textContent = element.text;
-        const editDescription = document.createElement("input");
+        const editDescription = createEditDescription();
         editDescription.value = element.text;
-        editDescription.hidden = true;
         function exitEditMode() {
             titleSpan.hidden = false;
             editButton.hidden = false;
@@ -60,10 +61,7 @@ function displayCompleted() {
             saveButton.hidden = true;
             cancelButton.hidden = true;
         }
-        const saveButton = document.createElement("button");
-        saveButton.type = "button";
-        saveButton.textContent = "Save";
-        saveButton.hidden = true;
+        const saveButton = createSaveButton();
         saveButton.addEventListener("click", function () {
             // Input validation
             const trimmedTask = editDescription.value.trim();
@@ -77,18 +75,12 @@ function displayCompleted() {
                 saveTask(tasks);
             }
         });
-        const cancelButton = document.createElement("button");
-        cancelButton.type = "button";
-        cancelButton.textContent = "Cancel";
-        cancelButton.hidden = true;
+        const cancelButton = createCancelButton();
         cancelButton.addEventListener("click", function () {
             editDescription.value = titleSpan.textContent;
             exitEditMode();
         });
-        const editButton = document.createElement("button");
-        editButton.classList.add("button", "button-edit");
-        editButton.type = "button";
-        editButton.textContent = "Edit";
+        const editButton = createEditButton();
         editButton.addEventListener("click", function () {
             titleSpan.hidden = true;
             editButton.hidden = true;
@@ -102,8 +94,8 @@ function displayCompleted() {
             listItem.prepend(checkbox);
             listItem.append(titleSpan);
             listItem.append(editDescription);
-            listItem.appendChild(deleteButton);
             listItem.appendChild(editButton);
+            listItem.appendChild(deleteButton);
             listItem.appendChild(saveButton);
             listItem.appendChild(cancelButton);
         }

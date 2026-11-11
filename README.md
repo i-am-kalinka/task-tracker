@@ -97,13 +97,21 @@ Week 4 — APIs + next project
 # Notes
 - Unlike a <span> or <li>, an <input> is a void element. A void element cannot have child elements in HTML.
 - ...
+- Unit Tests (AAA: Arrange, Act, Assert)
+- Regression Testing
+- Integration Tests
+- End-to-End Tests
+- ...
+- Test Doubles & Mocking
+- 
 
 
 
 
 Next:
 3.
-A) Refactoring duplicated code
+A) Refactoring duplicated code [X]
+- The UI when entering Edit Mode should be adapted! [X]
 B) Learning automated testing
 C) Responsive design and accessibility 
 4.
