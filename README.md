@@ -97,14 +97,25 @@ Week 4 — APIs + next project
 # Notes
 - Unlike a <span> or <li>, an <input> is a void element. A void element cannot have child elements in HTML.
 - ...
-- Unit Tests (AAA: Arrange, Act, Assert)
+- Unit Tests
+   - AAA: Arrange, Act, Assert
+   - Pure Functions & Side Effects
 - Regression Testing
 - Integration Tests
 - End-to-End Tests
 - ...
 - Test Doubles & Mocking
-- 
-
+- ...
+- Vitest = JavaScript testing framework.
+   - It provides functions such as test() and expect(), and automatically executes your tests.
+      - Use ".toBe" for primitive values and ".toEqual" for array and objects.
+   - Runs using Node.js, which allows JavaScript to execute outside the browser.
+- The "scripts" inside of "package.json" is like a collection of shortcuts for terminal commands.
+- Development Dependency
+   - A tool needed while developing your application, 
+   - but not normally needed by someone using the finished app.
+- Module = A JavaScript file that can share code with other JavaScript files using "export" and "import".
+- ...
 
 
 
@@ -112,7 +123,7 @@ Next:
 3.
 A) Refactoring duplicated code [X]
 - The UI when entering Edit Mode should be adapted! [X]
-B) Learning automated testing
+B) Learning automated testing [ ]
 C) Responsive design and accessibility 
 4.
 - Some "minor" issues
