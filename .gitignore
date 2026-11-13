@@ -1,0 +1,15 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Test coverage
+coverage/
+
+# Vitest cache
+.vitest-cache/
+
+# Environment files
+.env
+.env.local
