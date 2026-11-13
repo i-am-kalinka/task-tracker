@@ -1,6 +1,10 @@
+// Pure Function Testing
+
 import { test, expect } from "vitest";
 
 import { removeTask } from "./taskUtils.js";
+import { getNextTaskId } from "./taskUtils.js";
+
 
 test("removes the specified task without modifying the original array", () => {
 
@@ -27,23 +31,17 @@ test("removes the specified task without modifying the original array", () => {
 
 });
 
-
 test("keeps all tasks when the specified ID does not exist", () => {
-
     const tasks = [
         { id: 1, title: "Study" },
         { id: 2, title: "Exercise" }
     ];
-
     const result = removeTask(tasks, 99);
-
     expect(result).toEqual([
         { id: 1, title: "Study"},
         { id: 2, title: "Exercise" }
     ]);
-
 });
-
 
 test("returns an empty array when removing a task from an empty array", () => {
     const tasks = [];
@@ -61,46 +59,16 @@ test("returns an empty array when the last task is removed", () => {
 });
 
 
-// export function getNextTaskId(tasksArr) {
-
-//     // Return an array containing all ids
-//     const ids = tasksArr.map(todo => todo.id);
-
-//     // Check for an empty array
-//     if (ids.length === 0) {
-//         return 0;
-//     }
-
-//     // Get the currently largest id
-//     const idCounter = Math.max(...ids);
-
-//     return idCounter + 1;
-
-// }
-
-import { getNextTaskId } from "./taskUtils.js";
-
 test("returns id 0 if the array is empty", () => {
-    
-    // Arrange
     const tasks = [];
-
-    // Act
     const result = getNextTaskId(tasks);
-
-    // Assert
     expect(result).toBe(0);
-
 });
 
 test("returns an id higher by 1 than the only task", () => {
-    
     const tasks = [{ id: 5, title: "Play" }];
-
     const result = getNextTaskId(tasks);
-
     expect(result).toBe(6);
-
 });
 
 test("uses the largest current id and increases it by 1", () => {

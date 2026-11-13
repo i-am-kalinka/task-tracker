@@ -8,6 +8,8 @@ import { createSaveButton } from "./functions.js";
 import { createCancelButton } from "./functions.js";
 import { createEditButton } from "./functions.js";
 
+import { removeTask } from "./taskUtils.js";
+import { getNextTaskId } from "./taskUtils.js"
 
 // An array for task storage since we have a collection of the same type of thing
 const exampleTasks = [
@@ -53,7 +55,8 @@ function displayUncompleted() {
         // Create a delete button for each task
         const deleteButton = createDeleteButton();
         deleteButton.addEventListener("click", function() {
-            tasks = tasks.filter(e => e.id !== element.id);
+            // tasks = tasks.filter(e => e.id !== element.id);
+            tasks = removeTask(tasks, element.id);
             saveTask(tasks);
             displayUncompleted();
         });
@@ -173,22 +176,12 @@ taskForm.addEventListener("submit", function (event) {
         emptyTaskMessage.hidden = false;
     } else {
         emptyTaskMessage.hidden = true;
-        // Assign a new unique id to the new task
-        const ids = tasks.map(function(todo) {
-        return todo.id;
-        })
-        // Turn the array into a list with the spread operator, and get the largest id
-        idCounter = Math.max(...ids);
-        // Handle edge cases, such as if the array is empty
-        if (ids.length === 0) {
-            idCounter = 0;
-        } else {
-            idCounter +=1;
-        }
+        // Get the next available id (using a pure function)
+        const nextId = getNextTaskId(tasks);
         // Add new task to the array
         tasks.push(
             {
-            id: idCounter,
+            id: nextId,
             text: trimmedTask,
             completed: false
             }

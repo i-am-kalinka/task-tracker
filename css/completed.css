@@ -86,13 +86,17 @@ a:active {
 }
 .button-edit {
     background-color:#faedcd;
+    min-width: 70px;
 }
 .button-delete {
     background-color:#d4a373;
+    min-width: 70px;
 }
 .button-save {
     background-color: #faedcd;
+    min-width: 70px;
 }
 .button-cancel {
     background-color: #d4a373;
+    min-width: 70px;
 }

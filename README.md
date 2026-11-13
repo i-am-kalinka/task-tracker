@@ -51,7 +51,7 @@
 2. Finish and polish your to-do app [DONE]
    - Add editing, input validation, an empty-state message, and some CSS. Keep using vanilla JavaScript.
    - Goal: Complete a small application end-to-end, including edge cases and usability.
-3. Learn more JavaScript and basic testing
+3. Learn more JavaScript and basic testing [DONE]
    - Practice functions, scope, closures, array methods, objects, modules, error handling, and asynchronous JavaScript
    - Start writing small automated tests.
    - Goal: Understand why your code works and how to verify it systematically.
@@ -80,9 +80,9 @@ Week 2 — CSS + usability
 
 
 Week 3 — JavaScript fundamentals
-[ ] Practice array methods and closures
-[ ] Learn basic unit testing
-[ ] Refactor one piece of business logic into a testable function
+[ ] Practice array methods and closures + callbacks
+[X] Learn basic unit testing
+[X] Refactor one piece of business logic into a testable function
 
 
 Week 4 — APIs + next project
@@ -97,23 +97,6 @@ Week 4 — APIs + next project
 # Notes
 - Unlike a <span> or <li>, an <input> is a void element. A void element cannot have child elements in HTML.
 - ...
-- Unit Tests
-   - AAA: Arrange, Act, Assert
-   - Pure Functions & Side Effects
-- Regression Testing
-- Integration Tests
-- End-to-End Tests
-- ...
-- Test Doubles & Mocking
-- ...
-- Vitest = JavaScript testing framework.
-   - It provides functions such as test() and expect(), and automatically executes your tests.
-      - Use ".toBe" for primitive values and ".toEqual" for array and objects.
-   - Runs using Node.js, which allows JavaScript to execute outside the browser.
-- The "scripts" inside of "package.json" is like a collection of shortcuts for terminal commands.
-- Development Dependency
-   - A tool needed while developing your application, 
-   - but not normally needed by someone using the finished app.
 - Module = A JavaScript file that can share code with other JavaScript files using "export" and "import".
 - ...
 
@@ -124,7 +107,7 @@ Next:
 A) Refactoring duplicated code [X]
 - The UI when entering Edit Mode should be adapted! [X]
 B) Learning automated testing [ ]
-C) Responsive design and accessibility 
+C) Responsive design and accessibility [ ]
 4.
 - Some "minor" issues
 - Update Readme, make project presentable for GitHub
