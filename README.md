@@ -107,6 +107,13 @@ Next:
 A) Refactoring duplicated code [X]
 - The UI when entering Edit Mode should be adapted! [X]
 B) Learning automated testing [ ]
+   - Unit tests and assertions [X]
+   - Pure functions and edge cases [X]
+   - Mocking and testing side effects [X]
+   - Browser automation with Playwright [X]
+   - Task creation, validation, deletion, and persistence [X]
+   - Task completion and editing workflows [ ]
+   - Final manual regression testing [ ]
 C) Responsive design and accessibility [ ]
 4.
 - Some "minor" issues

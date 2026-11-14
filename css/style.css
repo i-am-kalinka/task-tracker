@@ -75,6 +75,9 @@ a:hover {
 a:active {
     color: orange;  /* 4. */
 }
+#emptyTaskMessage {
+    color: rgb(168, 47, 47);
+}
 #uncompletedTasks {
     display: flex;
     flex-direction: column;

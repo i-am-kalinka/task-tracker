@@ -5,7 +5,8 @@
   "main": "functions.js",
   "type": "module",
   "scripts": {
-    "test": "vitest run"
+    "test": "vitest run --exclude \"e2e/**\"",
+    "test:e2e": "playwright test"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,7 @@
   },
   "homepage": "https://github.com/i-am-kalinka/task-tracker#readme",
   "devDependencies": {
+    "@playwright/test": "^1.65.1",
     "vitest": "^5.1.0"
   }
 }

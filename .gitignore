@@ -1,15 +1,27 @@
-# Dependencies
+# Installed npm packages
 node_modules/
+
+# Playwright test results
+playwright-report/
+test-results/
+
+# Test coverage reports
+coverage/
+
+# Environment variables and secrets
+.env
+.env.local
+.env.*.local
+
+# Debug logs
+*.log
+
+# Operating system files
+.DS_Store
+Thumbs.db
 
 # Build output
 dist/
 
-# Test coverage
-coverage/
-
 # Vitest cache
 .vitest-cache/
-
-# Environment files
-.env
-.env.local

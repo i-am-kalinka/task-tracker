@@ -12,7 +12,9 @@
         <input type="text" id="taskInput" name="task">
         <button type="submit" id="addButton" class="button button-add">Add</button>
     </form>
-
+    <div id="emptyTaskMessage">
+        <p>Please enter a task description!</p>
+    </div>
     <div class="container-tasks">
         <div class="header">
             <h3>Uncompleted</h3>
@@ -26,10 +28,6 @@
             <p>There are no uncompleted Tasks.</p>
             <p>Well done!</p>
         </div>
-    </div>
-
-    <div id="emptyTaskMessage">
-        <p>Please enter a task description!.</p>
     </div>
 
     <!-- modules support import/export, classic scripts don't -->
