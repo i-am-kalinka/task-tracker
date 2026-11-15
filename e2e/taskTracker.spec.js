@@ -96,15 +96,6 @@ test("allows users to delete a specific task", async ({ page }) => {
 });
 
 
-// State transition
-// Create "Finish homework".
-// Verify that it initially appears in the uncompleted list.
-// Mark it as completed.
-// Verify that it disappears from the uncompleted list.
-// Verify that it appears in the completed list.
-// Reload the page and verify both conditions again.
-
-
 test("marks a task as completed and preserves its status after reloading", async ({ page }) => {
     await page.goto("http://127.0.0.1:5500/Beginner%20Projects/Task%20Tracker/index.html");
 
@@ -133,5 +124,38 @@ test("marks a task as completed and preserves its status after reloading", async
     const completedTasks = page.locator("#completedTasks li");  // While on secondPage, it is treated "page".
     const completedHomework = completedTasks.filter({ hasText: "Finish Homework" });
     await expect(completedHomework).toHaveCount(1);
+
+});
+
+
+test("allows users to edit a task and preserves the changes after reloading", async ({ page }) => {
+    await page.goto("http://127.0.0.1:5500/Beginner%20Projects/Task%20Tracker/index.html");
+
+    const taskInput = page.getByLabel("Enter your task:");
+    await taskInput.fill("Study Python");
+    const addButton = page.getByRole("button", { name: "Add" });
+    await addButton.click();
+
+    const taskItems = page.locator("#uncompletedTasks li");
+    const studyTask = taskItems.filter({ hasText: "Study Python" });
+    const editButton = studyTask.getByRole("button", { name: "Edit" });
+    await editButton.click();
+
+    await expect(editButton).not.toBeVisible();
+    const saveButton = studyTask.getByRole("button", { name: "Save" });
+    await expect(saveButton).toBeVisible();
+    const editDescription = studyTask.locator(".editDescription");
+    await expect(editDescription).toHaveValue("Study Python");
+
+    await editDescription.fill("Study JavaScript");
+    await saveButton.click();
+
+    await expect(studyTask).toHaveCount(0);
+    const updatedText = taskItems.filter({ hasText: "Study JavaScript" });
+    await expect(updatedText).toHaveCount(1);
+
+    await page.reload();
+    await expect(studyTask).toHaveCount(0);
+    await expect(updatedText).toHaveCount(1);
 
 });
