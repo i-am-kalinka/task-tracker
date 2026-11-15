@@ -94,3 +94,44 @@ test("allows users to delete a specific task", async ({ page }) => {
     await expect(groceryTask).toHaveCount(0);
     await expect(studyTask).toHaveCount(1);
 });
+
+
+// State transition
+// Create "Finish homework".
+// Verify that it initially appears in the uncompleted list.
+// Mark it as completed.
+// Verify that it disappears from the uncompleted list.
+// Verify that it appears in the completed list.
+// Reload the page and verify both conditions again.
+
+
+test("marks a task as completed and preserves its status after reloading", async ({ page }) => {
+    await page.goto("http://127.0.0.1:5500/Beginner%20Projects/Task%20Tracker/index.html");
+
+    // Add a task
+    const taskInput = page.getByLabel("Enter your task:");
+    await taskInput.fill("Finish Homework");
+    const addButton = page.getByRole("button", { name: "Add" });
+    await addButton.click();
+    
+    // Verify that the new task is not completed
+    const uncompletedTasks = page.locator("#uncompletedTasks li");
+    const uncompletedHomework = uncompletedTasks.filter({ hasText: "Finish Homework" });
+    await expect(uncompletedHomework).toHaveCount(1);
+
+    // Mark the new task as completed
+    const checkbox = uncompletedHomework.getByRole("checkbox");
+    await checkbox.click();
+    // Verify that it is no longer uncompleted and that it persists
+    await expect(uncompletedHomework).toHaveCount(0);
+    await page.reload();
+    await expect(uncompletedHomework).toHaveCount(0);
+
+    // Verify that the task is now completed
+    const secondPage = page.getByRole("link", { name: "Completed" });
+    await secondPage.click();
+    const completedTasks = page.locator("#completedTasks li");  // While on secondPage, it is treated "page".
+    const completedHomework = completedTasks.filter({ hasText: "Finish Homework" });
+    await expect(completedHomework).toHaveCount(1);
+
+});
