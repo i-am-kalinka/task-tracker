@@ -3,7 +3,7 @@
 import { test, expect } from "vitest";
 import { beforeEach, afterEach, vi } from "vitest";
 
-import { saveTask } from "./functions";
+import { saveTask } from "../js/functions";
 
 
 const data = {};

@@ -38,11 +38,11 @@ body {
 }
 
 .container-tasks {
-    padding-right: 100px;
-    padding-left: 100px;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
     background-color:#e9edc9;
     border-radius: 10px;
-    width: 60%;
 }
 .empty {
     padding-right: 100px;
@@ -151,6 +151,21 @@ a:active {
 but only when it has the HTML attribute "hidden". */
 #emptyStateMessage[hidden] {
     display: none;
+}
+
+/* For smaller devices, e.g. phones */
+@media (max-width: 600px) {
+    #taskForm {
+        flex-direction: column;
+    }
+    .container-tasks .header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .listItem {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 }
 
 /*

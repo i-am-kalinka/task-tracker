@@ -20,11 +20,11 @@ body {
 }
 
 .container-tasks {
-    padding-right: 100px;
-    padding-left: 100px;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
     background-color:#e9edc9;
     border-radius: 10px;
-    width: 60%;
 }
 .container-tasks .header {
     display: flex;
@@ -99,4 +99,19 @@ a:active {
 .button-cancel {
     background-color: #d4a373;
     min-width: 70px;
+}
+
+/* For smaller devices, e.g. phones */
+@media (max-width: 600px) {
+    #taskForm {
+        flex-direction: column;
+    }
+    .container-tasks .header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .listItem {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 }

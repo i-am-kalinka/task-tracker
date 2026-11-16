@@ -2,8 +2,8 @@
 
 import { test, expect } from "vitest";
 
-import { removeTask } from "./taskUtils.js";
-import { getNextTaskId } from "./taskUtils.js";
+import { removeTask } from "../js/taskUtils.js";
+import { getNextTaskId } from "../js/taskUtils.js";
 
 
 test("removes the specified task without modifying the original array", () => {

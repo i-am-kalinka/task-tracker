@@ -100,6 +100,14 @@ Week 4 — APIs + next project
 - ...
 - Module = A JavaScript file that can share code with other JavaScript files using "export" and "import".
 - ...
+- Callback = A function passed to another function to be called.
+- Closure = A function's access to variables from its surrounding lexical environment.
+- ...
+- Viewport = The area of the browser available for displaying a webpage.
+   - Use "Ctrl + Shift + M" to test different viewports, e.g. phone, in the browser.
+   - The viewport declaration inside the HTML file doesn't make your website responsive by itself.
+      - It allows the browser to interpret your responsive CSS using the intended viewport dimensions.
+- ...
 
 
 
@@ -115,13 +123,18 @@ B) Learning automated testing [X]
    - Task creation, validation, deletion, and persistence [X]
    - Task completion and editing workflows [X]
    - Final manual regression testing [X]
-C) Responsive design and accessibility [ ]
+C) Responsive design and accessibility [X]
 4.
-- Some "minor" issues
-- Update Readme, make project presentable for GitHub (folder structure, comments, ...)
+- Some "minor" issues [-]
+- Make project presentable for GitHub [X]
+   - Update the folder structure [X]
+   - Make sure everything still works [X]
+   - Write a decent README []
+   - Cleanup comments []
+   - Upload to GitHub when completely finished []
 5.
-- API, HTTP, fetch(), Promise, async/await
-- new project
+- HTTP & APIs -> fetch(), Promises, async/await -> SQL & Databases
+- A new project
 
 
 // // Dynamically add an HTML structure for the "edit" interface

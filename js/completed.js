@@ -1,11 +1,11 @@
-import { saveTask } from "../functions.js";
+import { saveTask } from "./functions.js";
 
-import { createDeleteButton } from "../functions.js";
-import { createEditDescription } from "../functions.js";
-import { createCheckbox } from "../functions.js";
-import { createSaveButton } from "../functions.js";
-import { createCancelButton } from "../functions.js";
-import { createEditButton } from "../functions.js";
+import { createDeleteButton } from "./functions.js";
+import { createEditDescription } from "./functions.js";
+import { createCheckbox } from "./functions.js";
+import { createSaveButton } from "./functions.js";
+import { createCancelButton } from "./functions.js";
+import { createEditButton } from "./functions.js";
 
 let savedTasks;
 

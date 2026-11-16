@@ -5,7 +5,7 @@
   "main": "functions.js",
   "type": "module",
   "scripts": {
-    "test": "vitest run --exclude \"e2e/**\"",
+    "test": "vitest run --exclude \"tests/e2e/**\"",
     "test:e2e": "playwright test"
   },
   "repository": {

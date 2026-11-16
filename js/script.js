@@ -64,6 +64,8 @@ function displayUncompleted() {
         const checkbox = createCheckbox();
         // Make the checkbox match the (value of) data
         checkbox.checked = element.completed;
+        // Accessible name, for e.g. a screen-reader user
+        checkbox.setAttribute("aria-label", element.text);
         // Change the boolean state
         checkbox.addEventListener("change", function () {
             // Take the checkbox's current state and assign it to the task object's completed property
@@ -82,6 +84,7 @@ function displayUncompleted() {
         // Create an input field containing the task description that is hidden at first
         const editDescription = createEditDescription();
         editDescription.value = element.text;
+        editDescription.setAttribute("aria-label", `Edit description for ${element.text}`);
 
         function exitEditMode() {
                 titleSpan.hidden = false;
