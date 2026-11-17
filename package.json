@@ -1,0 +1,26 @@
+{
+  "name": "task-tracker",
+  "version": "1.0.0",
+  "description": "- My second project in JavaScript.\r - Here, I start learning more about HTML and CSS.",
+  "main": "functions.js",
+  "type": "module",
+  "scripts": {
+    "test": "vitest run --exclude \"tests/e2e/**\"",
+    "test:e2e": "playwright test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i-am-kalinka/task-tracker.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/i-am-kalinka/task-tracker/issues"
+  },
+  "homepage": "https://github.com/i-am-kalinka/task-tracker#readme",
+  "devDependencies": {
+    "@playwright/test": "^1.65.1",
+    "vitest": "^5.1.0"
+  }
+}

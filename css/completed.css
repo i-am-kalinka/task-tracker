@@ -20,11 +20,11 @@ body {
 }
 
 .container-tasks {
-    padding-right: 100px;
-    padding-left: 100px;
+    width: 90%;
+    max-width: 800px;
+    padding: 20px;
     background-color:#e9edc9;
     border-radius: 10px;
-    width: 60%;
 }
 .container-tasks .header {
     display: flex;
@@ -38,6 +38,15 @@ body {
 }
 .container-tasks .header > a {
     font-size: 20px;
+}
+a:link {
+    color: blue;
+}
+a:hover {
+    color: red;
+}
+a:active {
+    color: orange;
 }
 #completedTasks {
     display: flex;
@@ -65,10 +74,44 @@ body {
     background-color:#fefae0;
     border-radius: 5px;
     padding: 5px;
+    text-decoration-line: line-through;
+    text-decoration-thickness: 1px;
+    text-decoration-color: rgb(95, 95, 95);
+}
+.editDescription {
+    font-size: 20px;
+    flex-grow: 1;
+    border-radius: 5px;
+    padding: 5px;
 }
 .button-edit {
     background-color:#faedcd;
+    min-width: 70px;
 }
 .button-delete {
     background-color:#d4a373;
+    min-width: 70px;
+}
+.button-save {
+    background-color: #faedcd;
+    min-width: 70px;
+}
+.button-cancel {
+    background-color: #d4a373;
+    min-width: 70px;
+}
+
+/* For smaller devices, e.g. phones */
+@media (max-width: 600px) {
+    #taskForm {
+        flex-direction: column;
+    }
+    .container-tasks .header {
+        flex-direction: column;
+        align-items: center;
+    }
+    .listItem {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
 }

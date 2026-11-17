@@ -1,6 +1,16 @@
 // Look for that function in the same folder as this file
 import { saveTask } from "./functions.js";
 
+import { createDeleteButton } from "./functions.js";
+import { createEditDescription } from "./functions.js";
+import { createCheckbox } from "./functions.js";
+import { createSaveButton } from "./functions.js";
+import { createCancelButton } from "./functions.js";
+import { createEditButton } from "./functions.js";
+
+import { removeTask } from "./taskUtils.js";
+import { getNextTaskId } from "./taskUtils.js"
+
 // An array for task storage since we have a collection of the same type of thing
 const exampleTasks = [
     {
@@ -43,21 +53,19 @@ function displayUncompleted() {
         const listItem = document.createElement("li");
         listItem.classList.add("listItem");
         // Create a delete button for each task
-        const deleteButton = document.createElement("button");
-        deleteButton.classList.add("button", "button-delete");
-        deleteButton.type = "button";
-        deleteButton.textContent = "Delete";
+        const deleteButton = createDeleteButton();
         deleteButton.addEventListener("click", function() {
-            tasks = tasks.filter(e => e.id !== element.id);
+            // tasks = tasks.filter(e => e.id !== element.id);
+            tasks = removeTask(tasks, element.id);
             saveTask(tasks);
             displayUncompleted();
         });
         // Create a checkbox for each task
-        const checkbox = document.createElement("input");
-        checkbox.classList.add("checkbox");
-        checkbox.type = "checkbox";
+        const checkbox = createCheckbox();
         // Make the checkbox match the (value of) data
         checkbox.checked = element.completed;
+        // Accessible name, for e.g. a screen-reader user
+        checkbox.setAttribute("aria-label", element.text);
         // Change the boolean state
         checkbox.addEventListener("change", function () {
             // Take the checkbox's current state and assign it to the task object's completed property
@@ -74,9 +82,9 @@ function displayUncompleted() {
         titleSpan.textContent = element.text;
 
         // Create an input field containing the task description that is hidden at first
-        const editDescription = document.createElement("input");
+        const editDescription = createEditDescription();
         editDescription.value = element.text;
-        editDescription.hidden = true;
+        editDescription.setAttribute("aria-label", `Edit description for ${element.text}`);
 
         function exitEditMode() {
                 titleSpan.hidden = false;
@@ -88,10 +96,7 @@ function displayUncompleted() {
             }
 
         // Create a "save" button
-        const saveButton = document.createElement("button");
-        saveButton.type = "button";
-        saveButton.textContent = "Save";
-        saveButton.hidden = true;
+        const saveButton = createSaveButton();
         saveButton.addEventListener("click", function () {
             // Input validation
             const trimmedTask = editDescription.value.trim();
@@ -109,10 +114,7 @@ function displayUncompleted() {
         });
 
         // Create a "cancel" button
-        const cancelButton = document.createElement("button");
-        cancelButton.type = "button";
-        cancelButton.textContent = "Cancel";
-        cancelButton.hidden = true;
+        const cancelButton = createCancelButton();
         cancelButton.addEventListener("click", function () {
             // Discard the new entry
             editDescription.value = titleSpan.textContent;
@@ -121,10 +123,7 @@ function displayUncompleted() {
         });
 
         // Create an "edit" button
-        const editButton = document.createElement("button");
-        editButton.classList.add("button", "button-edit");
-        editButton.type = "button";
-        editButton.textContent = "Edit";
+        const editButton = createEditButton();
         // Listen for a click on that button
         editButton.addEventListener("click", function () {
             // Hide original task description, edit button, delete button
@@ -160,7 +159,6 @@ function displayUncompleted() {
     } else {
         emptyStateMessage.hidden = true;
     }
-    // .some() => Does at least one element satisfy this condition?
 }
 
 // When the add button is clicked, the text from the input field is added as a new task
@@ -180,22 +178,12 @@ taskForm.addEventListener("submit", function (event) {
         emptyTaskMessage.hidden = false;
     } else {
         emptyTaskMessage.hidden = true;
-        // Assign a new unique id to the new task
-        const ids = tasks.map(function(todo) {
-        return todo.id;
-        })
-        // Turn the array into a list with the spread operator, and get the largest id
-        idCounter = Math.max(...ids);
-        // Handle edge cases, such as if the array is empty
-        if (ids.length === 0) {
-            idCounter = 0;
-        } else {
-            idCounter +=1;
-        }
+        // Get the next available id (using a pure function)
+        const nextId = getNextTaskId(tasks);
         // Add new task to the array
         tasks.push(
             {
-            id: idCounter,
+            id: nextId,
             text: trimmedTask,
             completed: false
             }
@@ -210,36 +198,3 @@ taskForm.addEventListener("submit", function (event) {
 });
 
 displayUncompleted();
-
-
-// Editing a task
-
-/*
-PROBLEM DECOMPOSITION
-- A button beside the task, looking like a gear.
-- (Maybe combine later editing and deletion into one page.)
-- Display the content/name of the chosen task, e.g. as a text line.
-- User can write in that text line, i.e. edit (add/delete) characters.
-- When user clicks save, overwrite the content/name with the new input.
-*/
-
-/*
-- When the button is clicked, the editing mode is entered
-    - The "edit" button disappears
-    - A "save" and a "cancel" button appear
-        - Only when "save" is clicked, the changes are updated
-        - Refreshing the website preserves saved edits
-    - A field for input appears, containing the current task/description
-        - The changes are linked to the object property "task.text"
-            - The other properties should remain unchanged
-        - The changes are only applied to the selected task
-    - Can the user edit multiple tasks at once, or should we somehow discard edits when another task is clicked?
-*/
-
-/*
-1. Add click-able link to completed.js for returning to main page
-2. After clean up, merge my branch and update Github
-3. Learn some CSS
-4. Automated tests?
-*/ 
-
