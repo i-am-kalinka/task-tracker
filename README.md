@@ -1,146 +1,51 @@
 # Task Tracker
-- My second project in JavaScript.
-- Here, I start learning more about HTML and CSS.
 
-## Notes
-- DOM = Document Object Model -> A tree of elements.
-- ol = ordered list, ul = unordered list, li = list item
-- ...
-- localStorage is used for persistent stage, can only store Strings
-- ...
-- persistance & application state ?
+This is one of my first personal projects, it was built with HTML, CSS, and vanilla JavaScript.
 
-- An anonymus function doesn't need a name because it is directly given to the method,
-- and it is not referred to else where.
+I started with a simple to-do list to practice DOM manipulation and gradually added more features as I learned new concepts. I also used this project to get familiar with Git, automated testing, and some basic accessibility and responsive design.
 
-### Example of Bug Fixing
-- Observe: Deleting one task removes multiple tasks.
-- Form a hypothesis: Maybe the IDs or saving logic are wrong.
-- Gather evidence: Use console.table() to inspect the array.
-- ISOLATE THE PROBLEM: Compare the array before and after .filter().
-- Find the root cause: =! was assigning a value instead of comparing values.
-- Fix and verify: Replace it with !== and test deletion again.
+## Features
+
+- Add, edit, and delete tasks
+- Mark tasks as completed or uncompleted
+- Separate pages for completed and uncompleted tasks
+- Save tasks using localStorage
+- Input validation and empty-state messages
+- Basic responsive design
 
 
-// objects → representing one task
-// arrays → storing all tasks
-// push() → adding data
-// filter() → filtering/removing data
-// forEach() or map() → processing collections
-// functions → organizing repeated operations
-// DOM manipulation → displaying data
-    //document.getElementById(...)
-    // document.querySelector(...)
-    // element.value
-    // element.textContent
-    // document.createElement(...)
-    // element.append(...)
-    // element.remove()
-    // element.classList
-    // addEventListener(...)
-// events → reacting to the user
-// localStorage → persistent data
-// JSON → converting objects to/from strings
+## What I Learned
+
+### JavaScript
+- DOM manipulation and event handling
+- Arrays, objects, and array methods
+- Functions, callbacks, closures, and scope
+- ES modules (`import` / `export`)
+- localStorage and JSON
+- Separating application logic into reusable functions
+
+### Testing
+- Writing unit tests with **Vitest**
+- Testing pure functions and edge cases
+- Mocking browser functionality
+- End-to-end testing with **Playwright**
+- Debugging failing tests and working with DOM locators
+- Manual regression testing
+
+### HTML & CSS
+- Semantic HTML and forms
+- Flexbox and the CSS box model
+- Media queries and responsive layouts
+- Basic accessibility, including keyboard navigation and accessible labels
+
+### Other
+- Git and GitHub for version control
+- Organizing project files and managing dependencies with npm
+- Debugging using browser developer tools
 
 
-# The roadmap I'd recommend for you
-1. Learn Git and GitHub [DONE]
-   - Start here
-   - Learn repositories, commits, branches, diffs, and pushing to GitHub. Use your existing Task Tracker as your first repository.
-   - Goal: Experiment without keeping old code commented out or worrying about breaking your project.
-2. Finish and polish your to-do app [DONE]
-   - Add editing, input validation, an empty-state message, and some CSS. Keep using vanilla JavaScript.
-   - Goal: Complete a small application end-to-end, including edge cases and usability.
-3. Learn more JavaScript and basic testing [DONE]
-   - Practice functions, scope, closures, array methods, objects, modules, error handling, and asynchronous JavaScript
-   - Start writing small automated tests.
-   - Goal: Understand why your code works and how to verify it systematically.
+## Final Thoughts
 
-4. Build a second project using an API [...]
-   - For example, a weather dashboard, movie search app, or GitHub profile explorer. 
-   - Learn fetch(), promises, async/await JSON responses, and HTTP.
-   - Goal: Work with data that comes from outside your application.
-5. Learn TypeScript, then React [...]
-   - TypeScript teaches you to describe and check data types. 
-   - React introduces component-based UI development and state management.
-   - Goal: Understand how larger frontend applications are structured.
-6. Explore backend development and databases [...]
-   - Start with Node.js, HTTP servers, REST APIs, and SQL. 
-   - Later, connect your frontend to your own backend.
-   - Goal: Build a full-stack application that persists data.
+This project ended up teaching me quite a bit more than I initially expected, especially when it came to testing and debugging.
 
-
-Week 1 — Git + task editing
-[X] Initialize a Git repository and make meaningful commits
-[X] Implement editing a task
-[X] Test deletion, editing, and persistence edge cases
-
-Week 2 — CSS + usability
-[X] Learn the box model and Flexbox
-[X] Style your to-do app
-[X] Add empty-input validation and useful feedback
-
-Week 3 — JavaScript fundamentals
-[X] Practice array methods and closures + callbacks
-[X] Learn basic unit testing
-[X] Refactor one piece of business logic into a testable function
-
-Week 4 — APIs + next project
-[ ] Learn promises, fetch, and async/await
-[ ] Request and display data from a public API
-[ ] Begin a second small project
-
-
-
-# Notes
-- Problem Decomposition!
-- Acceptance Criteria: Defining expected behavior (success) before implementation.
-- ...
-- Unlike a <span> or <li>, an <input> is a void element. A void element cannot have child elements in HTML.
-- ...
-- Module = A JavaScript file that can share code with other JavaScript files using "export" and "import".
-- ...
-- Callback = A function passed to another function to be called.
-- Closure = A function's access to variables from its surrounding lexical environment.
-- ...
-- Viewport = The area of the browser available for displaying a webpage.
-   - Use "Ctrl + Shift + M" to test different viewports, e.g. phone, in the browser.
-   - The viewport declaration inside the HTML file doesn't make your website responsive by itself.
-      - It allows the browser to interpret your responsive CSS using the intended viewport dimensions.
-- ...
-
-
-
-Next:
-3.
-A) Refactoring duplicated code [X]
-- The UI when entering Edit Mode should be adapted! [X]
-B) Learning automated testing [X]
-   - Unit tests and assertions [X]
-   - Pure functions and edge cases [X]
-   - Mocking and testing side effects [X]
-   - Browser automation with Playwright [X]
-   - Task creation, validation, deletion, and persistence [X]
-   - Task completion and editing workflows [X]
-   - Final manual regression testing [X]
-C) Responsive design and accessibility [X]
-4.
-- Some "minor" issues [-]
-- Make project presentable for GitHub [X]
-   - Update the folder structure [X]
-   - Make sure everything still works [X]
-   - Write a decent README []
-   - Cleanup comments []
-   - Upload to GitHub when completely finished []
-5.
-- HTTP & APIs -> fetch(), Promises, async/await -> SQL & Databases
-- A new project
-
-
-// // Dynamically add an HTML structure for the "edit" interface
-// const containerEditMode = document.createElement("div");
-// containerEditMode.classList.add("edit-mode");
-// // Group the elements inside the container
-// containerEditMode.append(editDescription, saveButton, cancelButton);
-// // Add the container to the page
-// document.querySelector(".container-tasks").append(containerEditMode);
+I'm leaving it here for now and moving on to learning more about web development as well as building further projects.

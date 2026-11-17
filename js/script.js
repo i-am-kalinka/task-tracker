@@ -159,7 +159,6 @@ function displayUncompleted() {
     } else {
         emptyStateMessage.hidden = true;
     }
-    // .some() => Does at least one element satisfy this condition?
 }
 
 // When the add button is clicked, the text from the input field is added as a new task
